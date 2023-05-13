@@ -132,7 +132,7 @@ class Calculator(QWidget):
         if self.num_1 == "+":
             self.input.setText("")
         if self.num_1 == "-":
-            self.input.setText("")
+            self.input.setText("-")
         if self.num_1 == "%":
             self.input.setText("")
         if self.num_1 == "+/-":
@@ -156,16 +156,10 @@ class Calculator(QWidget):
             self.num_2 = int(self.num_2)
 
         if self.op == "+":
-            if (type(self.num_1)) == float:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(float(self.num_1) + (float(self.num_2))))
-                else:
-                    self.input.setText(str(float(self.num_1) + (int(self.num_2))))
+            if (str(self.num_1 + self.num_2))[-2:] == '.0':
+                self.input.setText((str(self.num_1 + self.num_2))[:-2])
             else:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(int(self.num_1) + (float(self.num_2))))
-                else:
-                    self.input.setText(str(int(self.num_1) + (int(self.num_2))))
+                self.input.setText((str(self.num_1 + self.num_2)))
 
 
 
@@ -178,16 +172,10 @@ class Calculator(QWidget):
             self.num_2 = int(self.num_2)
 
         if self.op == "-":
-            if (type(self.num_1)) == float:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(float(self.num_1) - (float(self.num_2))))
-                else:
-                    self.input.setText(str(float(self.num_1) - (int(self.num_2))))
+            if (str(self.num_1 - self.num_2))[-2:] == '.0':
+                self.input.setText((str(self.num_1 - self.num_2))[:-2])
             else:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(int(self.num_1) - (float(self.num_2))))
-                else:
-                    self.input.setText(str(int(self.num_1) - (int(self.num_2))))
+                self.input.setText((str(self.num_1 - self.num_2)))
 
     def _result3(self):
         self.num_2 = (self.input.text())
@@ -197,16 +185,10 @@ class Calculator(QWidget):
             self.num_2 = int(self.num_2)
 
         if self.op == "x":
-            if (type(self.num_1)) == float:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(float(self.num_1) * (float(self.num_2))))
-                else:
-                    self.input.setText(str(float(self.num_1) * (int(self.num_2))))
+            if (str(self.num_1 * self.num_2))[-2:] == '.0':
+                self.input.setText((str(self.num_1 * self.num_2))[:-2])
             else:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(int(self.num_1) * (float(self.num_2))))
-                else:
-                    self.input.setText(str(int(self.num_1) * (int(self.num_2))))
+                self.input.setText((str(self.num_1 * self.num_2)))
 
     def _result4(self):
         self.num_2 = (self.input.text())
@@ -216,16 +198,13 @@ class Calculator(QWidget):
             self.num_2 = int(self.num_2)
 
         if self.op == "/":
-            if (type(self.num_1)) == float:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(float(self.num_1) / (float(self.num_2))))
+            if str(self.num_2)[:-2] != '0':
+                if (str(self.num_1 / self.num_2))[-2:] == '.0':
+                    self.input.setText((str(self.num_1 / self.num_2))[:-2])
                 else:
-                    self.input.setText(str(float(self.num_1) / (int(self.num_2))))
-            else:
-                if (type(self.num_2)) == float:
-                    self.input.setText(str(int(self.num_1) / (float(self.num_2))))
-                else:
-                    self.input.setText(str(int(self.num_1) / (int(self.num_2))))
+                    self.input.setText((str(self.num_1 / self.num_2)))
+            if str(self.num_2)[:-2] == '0':
+                self.input.setText(str(self.num_1)[:-2])
 
     def _clear(self):
         self.input.setText("")
